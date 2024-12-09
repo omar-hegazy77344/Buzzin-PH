@@ -1,0 +1,103 @@
+.item-details {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  font-family: 'Poppins', sans-serif;
+  color: #222;
+}
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.header-section h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.status-label {
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.status-label.lost {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.status-label.returned {
+  background-color: #27ae60;
+  color: #fff;
+}
+
+.item-info p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin: 0.5rem 0;
+}
+
+.item-info strong {
+  color: #555;
+  font-weight: 600;
+  display: inline-block;
+  width: 180px;
+}
+
+.details-section {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.signature-section, .photo-section {
+  flex: 1;
+  min-width: 45%;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #444;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+
+.itemimage-preview {
+  height: 200px;
+  margin-left: 230px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.image-preview {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .header-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .details-section {
+    flex-direction: column;
+  }
+}

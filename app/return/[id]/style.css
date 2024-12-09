@@ -1,0 +1,100 @@
+/* Container styling */
+.item-details {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+/* Header styling */
+.item-details h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #333;
+  text-align: center;
+  position: relative;
+}
+
+.item-details h1::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #3498db;
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+/* Section styling */
+.item-details p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0.5rem 0;
+}
+
+.item-details strong {
+  color: #555;
+  font-weight: 600;
+  display: inline-block;
+  min-width: 150px;
+}
+
+.item-details p + p {
+  border-top: 1px solid #f1f1f1;
+  padding-top: 0.75rem;
+}
+
+/* Image styling */
+.signature-image,
+.photo-image {
+  display: block;
+  max-width: 100%;
+  margin-top: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 200px;
+}
+
+/* Signature and photo sections */
+.signature-section,
+.photo-section {
+  margin-top: 2rem;
+}
+
+.signature-section h3,
+.photo-section h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #555;
+  border-bottom: 1px solid #f1f1f1;
+  padding-bottom: 0.5rem;
+}
+
+/* Error and loading messages */
+.error-message,
+.loading-message {
+  text-align: center;
+  color: #ff4c4c;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .item-details {
+    padding: 1.5rem;
+  }
+
+  .item-details h1 {
+    font-size: 1.5rem;
+  }
+
+  .item-details p strong {
+    min-width: 100px;
+  }
+}

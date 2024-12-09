@@ -9,9 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.2",
+    "mongoose": "^8.8.0",
+    "next": "15.0.0",
     "react": "19.0.0-rc-65a56d0e-20241020",
     "react-dom": "19.0.0-rc-65a56d0e-20241020",
-    "next": "15.0.0"
+    "signature_pad": "^5.0.4"
   },
   "devDependencies": {
     "eslint": "^8",
