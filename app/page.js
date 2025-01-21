@@ -1,12 +1,18 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react';
 import SignaturePad from 'signature_pad';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHashtag,faIdCard, faLocationDot, faFont, faUser, faBuilding, faCircleInfo, faFileSignature, faCameraRotate, faCamera, faFilePdf, faHandPointer, faPaperPlane  } from "@fortawesome/free-solid-svg-icons";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-
-
+import CorporateFareIcon from '@mui/icons-material/CorporateFare';
+import { Cameraswitch, PhotoCamera, PictureAsPdf, Send } from '@mui/icons-material';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import DrawIcon from '@mui/icons-material/Draw';
+import InfoIcon from '@mui/icons-material/Info';
+import BadgeIcon from '@mui/icons-material/Badge';
+import NumbersIcon from '@mui/icons-material/Numbers';
+import PersonIcon from '@mui/icons-material/Person';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import TextFieldsIcon from '@mui/icons-material/TextFields';
 const LostAndFoundReport = () => {
 
     const inputRefs = useRef([]);
@@ -286,7 +292,7 @@ const clearForm = () => {
           <div className="input-wrap w-100">
             <input className="contact-input" name="Item Name" type="text" ref={(el) => (inputRefs.current[7] = el)} required />
             <label>Item Name</label>
-            <FontAwesomeIcon icon={faFont} className="icon" />
+            <TextFieldsIcon  className="icon" />
           </div>
 
           {/* Location input */}
@@ -295,7 +301,7 @@ const clearForm = () => {
 
             <label>Location</label>
 
-            <FontAwesomeIcon icon={faLocationDot} className="icon" />
+            <LocationOnIcon className="icon" />
 
           </div>
 
@@ -303,49 +309,49 @@ const clearForm = () => {
           <div className="input-wrap">
             <input className="contact-input" name="SerNum" type="text" ref={(el) => (inputRefs.current[1] = el)} required />
             <label>Serial Number</label>
-            <FontAwesomeIcon icon={faHashtag} className="icon" />
+            <NumbersIcon  className="icon" />
           </div>
 
           {/* <!-- Police Reference --> */}
           <div className="input-wrap">
             <input className="contact-input" autoComplete="off" name="ref" type="text" ref={(el) => (inputRefs.current[2] = el)} required />
             <label>Police Ref.</label>
-            <FontAwesomeIcon icon={faHashtag} className="icon" />
+            <NumbersIcon  className="icon" />
           </div>
         
           {/* <!-- Found By --> */}
           <div className="input-wrap w-100">
             <input className="contact-input" autoComplete="off" name="Foundby" type="text" ref={(el) => (inputRefs.current[3] = el)} required />
             <label>Found By:</label>
-            <FontAwesomeIcon icon={faUser} className="icon" />
+            <PersonIcon  className="icon" />
           </div>
         
           {/* <!-- ID Number --> */}
           <div className="input-wrap">
             <input className="contact-input" autoComplete="off" name="ID" type="text" required ref={(el) => (inputRefs.current[4] = el)} />
             <label>ID No.</label>
-            <FontAwesomeIcon icon={faIdCard} className="icon" />
+            <PersonIcon  className="icon" />
           </div>
         
           {/* <!-- Department --> */}
           <div className="input-wrap">
             <input className="contact-input" autoComplete="off" name="Dept" type="text" required ref={(el) => (inputRefs.current[5] = el)} />
             <label>Department</label>
-            <FontAwesomeIcon icon={faBuilding} className="icon" /> 
+            <CorporateFareIcon  className="icon" /> 
           </div>
         
           {/*<!-- Description -->*/}
           <div className="input-wrap textarea w-100">
             <textarea name="discription" autoComplete="off" className="contact-input" ref={(el) => (inputRefs.current[6] = el)} required></textarea>
             <label>Description</label>
-            <FontAwesomeIcon icon={faCircleInfo} className="icon" />
+            <InfoIcon className='icon'/>
           </div>
 
           {/* Signature Canvas */}
           <div className="input-wrap w-100">
             <label className="signature">Signature:</label>
             <canvas ref={canvasRef} className="contact-input" style={{ border: "1px solid #000" }}></canvas>
-            <FontAwesomeIcon icon={faFileSignature} className="icon sign" />
+            <DrawIcon className="icon sign"/>
             <input type="hidden" ref={signatureInputRef} name="signatureImage" />
             <button type="button" onClick={() => signaturePadRef.current.clear()} className="clear-btn">Clear</button>
           </div>
@@ -378,7 +384,7 @@ const clearForm = () => {
                     className="btn"
                     style={{ marginTop: "10px" }}
                   >
-                    <FontAwesomeIcon style={{ marginRight: "10px" }} icon={faCamera} />
+                    <PhotoCamera style={{ marginRight: "10px" }} />
                     {isCameraOpen ? "Take Photo" : "Open Camera"}
                   </button>
                   {isCameraOpen && (
@@ -388,7 +394,7 @@ const clearForm = () => {
                       className="clear-btn switch-camera-btn"
                       style={{ marginTop: "10px" }}
                     >
-                      <FontAwesomeIcon icon={faCameraRotate} />
+                      <Cameraswitch />
                       Switch Camera
 
                     </button>
@@ -410,10 +416,10 @@ const clearForm = () => {
           {/* Buttons */}
           <div className="contact-buttons w-100">
             <button className="btn" type="submit">Submit
-            <FontAwesomeIcon icon={faPaperPlane} style={{ marginLeft: "5px" }} className="icon" />
+            <Send  style={{ marginLeft: "5px" }} className="icon" />
             </button>
             <button className="btn" type="button" onClick={downloadPDF}>Download PDF
-            <FontAwesomeIcon style={{ marginLeft: "10px" }} icon={faFilePdf} className="icon" />
+            <PictureAsPdf style={{ marginLeft: "10px" }} className="icon" />
             </button>
             
           </div>

@@ -1,11 +1,20 @@
 "use client"
 import React, { use, useEffect, useRef, useState } from 'react';
 import SignaturePad from 'signature_pad';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHashtag, faLocationDot, faUser, faBuilding, faCircleInfo, faFileSignature, faFont, faIdCard, faPhone, faIdBadge, faRepeat, faCamera, faCameraRotate, faFilePdf, faHandPointer, faPaperPlane  } from "@fortawesome/free-solid-svg-icons";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import "./style.css";
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import SendIcon from '@mui/icons-material/Send';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import DrawIcon from '@mui/icons-material/Draw';
+import InfoIcon from '@mui/icons-material/Info';
+import BadgeIcon from '@mui/icons-material/Badge';
+import NumbersIcon from '@mui/icons-material/Numbers';
+import PersonIcon from '@mui/icons-material/Person';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import TextFieldsIcon from '@mui/icons-material/TextFields';
+import { Cameraswitch, PhotoCamera } from '@mui/icons-material';
 const ReturnReport = ({ params }) => {
 
   const { id } = use(params); // Unwrap params to access id
@@ -342,32 +351,32 @@ const downloadPDF = async () => {
     <div className="input-wrap not-empty w-100">
       <input className="contact-input" type="text" value={item.ItemName || ''} readOnly />
       <label>Item Name</label>
-      <FontAwesomeIcon icon={faFont} className="icon" />
+      <TextFieldsIcon  className="icon" />
     </div>
     <div className="input-wrap not-empty">
       <input className="contact-input" type="text" value={item.ref || ''} readOnly />
       <label>Reference</label>
-      <FontAwesomeIcon icon={faHashtag} className="icon" />
+      <NumbersIcon  className="icon" />
     </div>
     <div className="input-wrap not-empty">
       <input className="contact-input" type="text" value={item.location || ''} readOnly />
       <label>Location</label>
-      <FontAwesomeIcon icon={faLocationDot} className="icon" />
+      <LocationOnIcon icon={faLocationDot} className="icon" />
     </div>
     <div className="input-wrap not-empty">
       <input className="contact-input" type="text" value={item.Foundby || ''} readOnly />
       <label>Found By</label>
-      <FontAwesomeIcon icon={faUser} className="icon" />
+      <PersonIcon  className="icon" />
     </div>
     <div className="input-wrap not-empty">
       <input className="contact-input" type="text" value={item.ID || ''} readOnly />
       <label>Founder ID</label>
-      <FontAwesomeIcon icon={faIdCard} className="icon" />
+      <BadgeIcon className="icon" />
     </div>
     <div className="input-wrap w-100 not-empty">
       <input className="contact-input" type="text" value={item.description || ''} readOnly />
       <label>Description</label>
-      <FontAwesomeIcon icon={faCircleInfo} className="icon" />
+      <InfoIcon className='icon'/>
     </div>
 
     <div className="input-wrap">
@@ -391,28 +400,28 @@ const downloadPDF = async () => {
           <div className="input-wrap w-100">
             <input className="contact-input" name="Reciver Name" type="text" ref={(el) => (inputRefs.current[0] = el)} required />
             <label>Reciver Name</label>
-            <FontAwesomeIcon icon={faUser} className="icon" />
+            <PersonIcon  className="icon" />
           </div>
 
           {/* Reciver ID */}
           <div className="input-wrap">
             <input className="contact-input" name="Reciver ID" type="text" ref={(el) => (inputRefs.current[1] = el)} required />
             <label>Reciver ID:</label>
-            <FontAwesomeIcon icon={faIdCard} className="icon" />
+            <BadgeIcon className="icon" />
           </div>
 
           {/* Reciver Contact Info */}
           <div className="input-wrap">
             <input className="contact-input" autoComplete="off" name="Reciver Contact Info" type="tel" required ref={(el) => (inputRefs.current[2] = el)} />
             <label htmlFor="phone"> Contact Info.</label>
-            <FontAwesomeIcon icon={faPhone} className="icon" />
+            <LocalPhoneIcon className="icon" />
           </div>
 
           {/* Signature Canvas */}
           <div className="input-wrap w-100">
             <label className="signature">Signature:</label>
             <canvas ref={canvasRef} className="contact-input" style={{ border: "1px solid #000" }}></canvas>
-            <FontAwesomeIcon icon={faFileSignature} className="icon sign" />
+            <DrawIcon className="icon sign"/>
             <input type="hidden" ref={signatureInputRef} name="signatureImage" />
             <button type="button" onClick={() => signaturePadRef.current.clear()} className="clear-btn">Clear</button>
           </div>
@@ -443,7 +452,7 @@ const downloadPDF = async () => {
                     className="btn"
                     style={{ marginTop: "10px" }}
                   >
-                    <FontAwesomeIcon style={{ marginRight: "10px" }} icon={faCamera} />
+                    <PhotoCamera style={{ marginRight: "10px" }} />
                     {isCameraOpen ? "Take Photo" : "Open Camera"}
                   </button>
                   {isCameraOpen && (
@@ -453,7 +462,7 @@ const downloadPDF = async () => {
                       className="clear-btn switch-camera-btn"
                       style={{ marginTop: "10px" }}
                     >
-                      <FontAwesomeIcon icon={faCameraRotate} />
+                      <Cameraswitch />
                       Switch Camera
                       
                     </button>
@@ -480,10 +489,10 @@ const downloadPDF = async () => {
           {/* Buttons */}
           <div className="contact-buttons w-100">
             <button className="btn" type="submit">Submit
-            <FontAwesomeIcon icon={faPaperPlane} style={{ marginLeft: "10px" }} className="icon" />
+            <SendIcon icon={faPaperPlane} style={{ marginLeft: "10px" }} className="icon" />
             </button>
             <button className="btn" type="button" onClick={downloadPDF}>Download PDF
-            <FontAwesomeIcon icon={faFilePdf} style={{ marginLeft: "10px" }} className="icon" />
+            <PictureAsPdfIcon icon={faFilePdf} style={{ marginLeft: "10px" }} className="icon" />
             </button>
             
           </div>

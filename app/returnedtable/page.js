@@ -2,9 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import './table.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileLines } from '@fortawesome/free-solid-svg-icons';
-
+import DescriptionIcon from '@mui/icons-material/Description';
 const LostFoundTable = () => {
   const [items, setItems] = useState([]);
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
@@ -123,7 +121,7 @@ const LostFoundTable = () => {
                   </td>
                   <td>
                     <div style={{ textAlign: 'center', cursor: 'pointer' }} onClick={() => handledetailsClick(item._id)}>
-                      <FontAwesomeIcon icon={faFileLines} style={{ cursor: 'pointer', fontSize: '20px' }} />
+                      <DescriptionIcon  style={{ cursor: 'pointer', fontSize: '20px' }} />
                       <p>Show Details</p>
                     </div>
                   </td>

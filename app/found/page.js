@@ -1,10 +1,15 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react';
 import SignaturePad from 'signature_pad';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHashtag, faLocationDot, faUser, faBuilding, faCircleInfo, faFileSignature, faFont, faIdCard, faPhone, faIdBadge  } from "@fortawesome/free-solid-svg-icons";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import DrawIcon from '@mui/icons-material/Draw';
+import InfoIcon from '@mui/icons-material/Info';
+import BadgeIcon from '@mui/icons-material/Badge';
+import NumbersIcon from '@mui/icons-material/Numbers';
+import PersonIcon from '@mui/icons-material/Person';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import TextFieldsIcon from '@mui/icons-material/TextFields';
 
 
 const LostAndFoundReport = () => {
@@ -251,63 +256,63 @@ const clearForm = () => {
           <div className="input-wrap w-100">
             <input className="contact-input" name="Item Name" type="text" ref={(el) => (inputRefs.current[0] = el)} required />
             <label>Item Name</label>
-            <FontAwesomeIcon icon={faFont} className="icon" />
+            <TextFieldsIcon  className="icon" />
           </div>
 
           {/* Recived By */}
           <div className="input-wrap w-100">
             <input className="contact-input" name="Recived By" type="text" ref={(el) => (inputRefs.current[1] = el)} required />
             <label>Recived by:</label>
-            <FontAwesomeIcon icon={faUser} className="icon" />
+            <PersonIcon  className="icon" />
           </div>
 
           {/* <!-- ID Number --> */}
           <div className="input-wrap">
             <input className="contact-input" autoComplete="off" name="ID" type="text" required ref={(el) => (inputRefs.current[2] = el)} />
             <label>ID No.</label>
-            <FontAwesomeIcon icon={faIdCard} className="icon" />
+            <BadgeIcon className="icon" />
           </div>
 
           {/* Contact Info */}
           <div className="input-wrap">
             <input className="contact-input" autoComplete="off" name="Contact Info" type="tel" required ref={(el) => (inputRefs.current[3] = el)} />
             <label htmlFor="phone">Contact Info.</label>
-            <FontAwesomeIcon icon={faPhone} className="icon" />
+            <LocalPhoneIcon className="icon" />
           </div>
 
           {/* <!-- Found By --> */}
           <div className="input-wrap w-100">
             <input className="contact-input" autoComplete="off" name="Foundby" type="text" ref={(el) => (inputRefs.current[4] = el)} required />
             <label>Found By:</label>
-            <FontAwesomeIcon icon={faUser} className="icon" />
+            <PersonIcon  className="icon" />
           </div>
 
           {/* Item Ref Number */}
           <div className="input-wrap">
             <input className="contact-input" name="Item Ref Numb" type="text" ref={(el) => (inputRefs.current[5] = el)} required />
             <label>Item Ref Number</label>
-            <FontAwesomeIcon icon={faHashtag} className="icon" />
+            <NumbersIcon  className="icon" />
           </div>
 
           {/* <!-- Badge Number --> */}
           <div className="input-wrap">
             <input className="contact-input" autoComplete="off" name="ID" type="text" required ref={(el) => (inputRefs.current[6] = el)} />
             <label>Badge No.</label>
-            <FontAwesomeIcon icon={faIdBadge} className="icon" />
+            <NumbersIcon className="icon" />
           </div>
         
           {/*<!-- Description -->*/}
           <div className="input-wrap textarea w-100">
             <textarea name="discription" autoComplete="off" className="contact-input" ref={(el) => (inputRefs.current[7] = el)} required></textarea>
             <label>Description</label>
-            <FontAwesomeIcon icon={faCircleInfo} className="icon" />
+            <InfoIcon className='icon'/>
           </div>
 
           {/* Signature Canvas */}
           <div className="input-wrap w-100">
             <label className="signature">Signature:</label>
             <canvas ref={canvasRef} className="contact-input" style={{ border: "1px solid #000" }}></canvas>
-            <FontAwesomeIcon icon={faFileSignature} className="icon sign" />
+            <DrawIcon className="icon sign"/>
             <input type="hidden" ref={signatureInputRef} name="signatureImage" />
             <button type="button" onClick={() => signaturePadRef.current.clear()} className="clear-btn">Clear</button>
           </div>
