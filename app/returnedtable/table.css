@@ -159,6 +159,9 @@ tbody tr.hide td img {
   padding: .4rem 0;
   border-radius: 2rem;
   text-align: center;
+   padding-left: 20px;
+  padding-right: 20px;
+  width: 60px;
 }
 
 .status.returned {
@@ -172,8 +175,8 @@ tbody tr.hide td img {
 }
 
 .status.pending {
-  background-color: #ebc474;
-  color: rgb(255, 119, 0);
+  background-color: #a5c4d9;
+  color: white;
 }
 
 

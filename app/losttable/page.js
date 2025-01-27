@@ -50,12 +50,13 @@ const LostFoundTable = () => {
     <div className="datatable">
       <main className="table" id="customers_table">
         <section className="table__header">
-          <h1>Lost & Found Items Table</h1>
+          <h1>Lost Items Table</h1>
         </section>
         <section className="table__body">
           <table>
             <thead>
               <tr>
+                <th>Action</th>
                 <th>Item Name</th>
                 <th>Date</th>
                 <th>Time</th>
@@ -70,6 +71,15 @@ const LostFoundTable = () => {
             <tbody>
               {items.map((item) => (
                 <tr key={item._id}>
+                   <td>
+                    <p
+                      className={"status pending"}
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => handleStatusClick(item._id, item.Status)}
+                    >
+                     Click to Return
+                    </p>
+                  </td>
                   <td>
                     <img
                       src={item.photoImage}
@@ -96,7 +106,6 @@ const LostFoundTable = () => {
                     <p
                       className={`status ${item.Status === 'returned' ? 'returned' : 'lost'}`}
                       style={{ cursor: 'pointer' }}
-                      onClick={() => handleStatusClick(item._id, item.Status)}
                     >
                       {item.Status === 'returned' ? 'Returned' : 'Lost'}
                     </p>

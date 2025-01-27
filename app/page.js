@@ -27,6 +27,13 @@ const LostAndFoundReport = () => {
     const [photo, setPhoto] = useState(null);
     const [cameraFacingMode, setCameraFacingMode] = useState("environment");
 
+    useEffect(() => {
+  if (isCameraOpen) {
+    openCamera();
+  }
+}, [cameraFacingMode]);
+
+
     // code for the bluring of Foucus and Unfocus feilds
     useEffect(() => {
       const inputs = inputRefs.current;
@@ -68,13 +75,27 @@ const LostAndFoundReport = () => {
       const canvas = canvasRef.current;
       signaturePadRef.current = new SignaturePad(canvas);
 
-      const resizeCanvas = () => {
-        const ratio = Math.max(window.devicePixelRatio || 1, 1);
-        canvas.width = canvas.offsetWidth * ratio;
-        canvas.height = canvas.offsetHeight * ratio;
-        canvas.getContext("2d").scale(ratio, ratio);
-        signaturePadRef.current.clear();
-      };
+    const resizeCanvas = () => {
+  const canvas = canvasRef.current;
+  const signaturePad = signaturePadRef.current;
+
+  if (!canvas || !signaturePad) return;
+
+  // Save the current signature as an image
+  const signatureData = signaturePad.isEmpty() ? null : signaturePad.toDataURL();
+
+  // Resize the canvas
+  const ratio = Math.max(window.devicePixelRatio || 1, 1);
+  canvas.width = canvas.offsetWidth * ratio;
+  canvas.height = canvas.offsetHeight * ratio;
+  canvas.getContext("2d").scale(ratio, ratio);
+
+  // Restore the saved signature
+  if (signatureData) {
+    signaturePad.fromDataURL(signatureData);
+  }
+};
+
 
       window.addEventListener("resize", resizeCanvas);
       resizeCanvas();
@@ -98,28 +119,30 @@ const LostAndFoundReport = () => {
   }
 };
 
-const switchCamera = async () => {
-  // Stop the current stream if active
+const switchCamera = () => {
   if (videoRef.current && videoRef.current.srcObject) {
     const tracks = videoRef.current.srcObject.getTracks();
     tracks.forEach((track) => track.stop());
   }
 
-  // Toggle between front and back camera
+  // Update camera mode (State change happens asynchronously)
   setCameraFacingMode((prevMode) => (prevMode === "environment" ? "user" : "environment"));
-
-  // Reopen the camera with the new facing mode
-  setTimeout(() => {
-    openCamera();
-  }, 500); // Slight delay to ensure state update is applied
 };
+
 
 const capturePhoto = () => {
   const video = videoRef.current;
   const canvas = photoCanvasRef.current;
   const context = canvas.getContext("2d");
 
+  // Set canvas dimensions to match video dimensions
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+
+  // Draw video frame onto canvas
   context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+  // Save the photo as a Base64 image
   setPhoto(canvas.toDataURL("image/png"));
 
   // Stop camera stream
@@ -285,7 +308,7 @@ const clearForm = () => {
   return (
     <div className="contact">
       <div className="wrapper">
-        <h2>Lost And Found Report</h2>
+        <h2>Lost Item Report</h2>
         <form onSubmit={handleSubmit} id="contact-form" className="contact-form">
 
         {/* Item Name */}
@@ -363,7 +386,7 @@ const clearForm = () => {
 
             {photo ? (
               <div>
-                <img src={photo} alt="Captured" style={{ width: '100%', height: '150px' }} />
+                <img src={photo} alt="Captured" style={{ width: '100%' }} />
                 <button type="button" onClick={retakePhoto} className="btn">Retake Photo</button>
               </div>
             ) : (
@@ -381,10 +404,10 @@ const clearForm = () => {
                   <button
                     type="button"
                     onClick={isCameraOpen ? capturePhoto : openCamera}
-                    className="btn"
+                    className="ibtn"
                     style={{ marginTop: "10px" }}
                   >
-                    <PhotoCamera style={{ marginRight: "10px" }} />
+                    <PhotoCamera />
                     {isCameraOpen ? "Take Photo" : "Open Camera"}
                   </button>
                   {isCameraOpen && (
@@ -412,16 +435,17 @@ const clearForm = () => {
 
           </div>
             <button className="clear-btn"  
-            type="button" onClick={clearForm}>Clear Form</button> 
+            type="button"></button> 
           {/* Buttons */}
           <div className="contact-buttons w-100">
-            <button className="btn" type="submit">Submit
-            <Send  style={{ marginLeft: "5px" }} className="icon" />
-            </button>
-            <button className="btn" type="button" onClick={downloadPDF}>Download PDF
-            <PictureAsPdf style={{ marginLeft: "10px" }} className="icon" />
-            </button>
-            
+            <button className="ibtn" type="submit">
+              <div>
+              Submit
+              </div>
+              <Send className="icon" />
+              </button>
+            <button className="btn"  
+            type="button" onClick={clearForm}>Clear Form</button>     
           </div>
         </form>
       </div>

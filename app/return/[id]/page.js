@@ -49,6 +49,11 @@ const ReturnReport = ({ params }) => {
     const [isCameraOpen, setIsCameraOpen] = useState(false);
     const [photo, setPhoto] = useState(null);
     const [cameraFacingMode, setCameraFacingMode] = useState("environment");
+useEffect(() => {
+  if (isCameraOpen) {
+    openCamera(); // This will now use the updated cameraFacingMode
+  }
+}, [cameraFacingMode]); // Runs every time cameraFacingMode changes
 
     // code for the bluring of Foucus and Unfocus feilds
     useEffect(() => {
@@ -91,13 +96,27 @@ const ReturnReport = ({ params }) => {
       const canvas = canvasRef.current;
       signaturePadRef.current = new SignaturePad(canvas);
 
-      const resizeCanvas = () => {
-        const ratio = Math.max(window.devicePixelRatio || 1, 1);
-        canvas.width = canvas.offsetWidth * ratio;
-        canvas.height = canvas.offsetHeight * ratio;
-        canvas.getContext("2d").scale(ratio, ratio);
-        signaturePadRef.current.clear();
-      };
+     const resizeCanvas = () => {
+  const canvas = canvasRef.current;
+  const signaturePad = signaturePadRef.current;
+
+  if (!canvas || !signaturePad) return;
+
+  // Save the current signature as an image
+  const signatureData = signaturePad.isEmpty() ? null : signaturePad.toDataURL();
+
+  // Resize the canvas
+  const ratio = Math.max(window.devicePixelRatio || 1, 1);
+  canvas.width = canvas.offsetWidth * ratio;
+  canvas.height = canvas.offsetHeight * ratio;
+  canvas.getContext("2d").scale(ratio, ratio);
+
+  // Restore the saved signature
+  if (signatureData) {
+    signaturePad.fromDataURL(signatureData);
+  }
+};
+
 
       window.addEventListener("resize", resizeCanvas);
       resizeCanvas();
@@ -106,7 +125,6 @@ const ReturnReport = ({ params }) => {
     }, []);
 
  // Camera Setup
-// Camera Setup
 const openCamera = async () => {
   try {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -118,24 +136,17 @@ const openCamera = async () => {
     }
   } catch (error) {
     console.error("Error accessing camera:", error);
-    alert("Unable to access the camera. Please ensure camera permissions are enabled.");
   }
 };
 
-const switchCamera = async () => {
-  // Stop the current stream if active
+const switchCamera = () => {
   if (videoRef.current && videoRef.current.srcObject) {
     const tracks = videoRef.current.srcObject.getTracks();
     tracks.forEach((track) => track.stop());
   }
 
-  // Toggle between front and back camera
+  // Update camera mode and wait for state change
   setCameraFacingMode((prevMode) => (prevMode === "environment" ? "user" : "environment"));
-
-  // Reopen the camera with the new facing mode
-  setTimeout(() => {
-    openCamera();
-  }, 500); // Slight delay to ensure state update is applied
 };
 
 const capturePhoto = () => {
@@ -143,7 +154,13 @@ const capturePhoto = () => {
   const canvas = photoCanvasRef.current;
   const context = canvas.getContext("2d");
 
+  // Set canvas dimensions to match video dimensions
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  // Draw video frame onto canvas
   context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+  // Save the photo as a Base64 image
   setPhoto(canvas.toDataURL("image/png"));
 
   // Stop camera stream
@@ -342,7 +359,7 @@ const downloadPDF = async () => {
   return (
     <div className="contact">
       <div className="wrapper">
-        <h2>Lost And Found Report</h2>
+        <h2>Return Item Report</h2>
         <form onSubmit={handleSubmit} id="contact-form" className="contact-form">
 
         {item ? (
@@ -361,7 +378,7 @@ const downloadPDF = async () => {
     <div className="input-wrap not-empty">
       <input className="contact-input" type="text" value={item.location || ''} readOnly />
       <label>Location</label>
-      <LocationOnIcon icon={faLocationDot} className="icon" />
+      <LocationOnIcon className="icon" />
     </div>
     <div className="input-wrap not-empty">
       <input className="contact-input" type="text" value={item.Foundby || ''} readOnly />
@@ -399,14 +416,14 @@ const downloadPDF = async () => {
           {/* Reciver Name */}
           <div className="input-wrap w-100">
             <input className="contact-input" name="Reciver Name" type="text" ref={(el) => (inputRefs.current[0] = el)} required />
-            <label>Reciver Name</label>
+            <label>Receiver  Name</label>
             <PersonIcon  className="icon" />
           </div>
 
           {/* Reciver ID */}
           <div className="input-wrap">
             <input className="contact-input" name="Reciver ID" type="text" ref={(el) => (inputRefs.current[1] = el)} required />
-            <label>Reciver ID:</label>
+            <label>Receiver  ID:</label>
             <BadgeIcon className="icon" />
           </div>
 
@@ -431,7 +448,7 @@ const downloadPDF = async () => {
          
             {photo ? (
               <div>
-                <img src={photo} alt="Captured" style={{ width: '100%', height: '150px' }} />
+                <img src={photo} alt="Captured" style={{ width: '100%'}} />
                 <button type="button" onClick={retakePhoto} className="btn">Retake Photo</button>
               </div>
             ) : (
@@ -449,10 +466,10 @@ const downloadPDF = async () => {
                   <button
                     type="button"
                     onClick={isCameraOpen ? capturePhoto : openCamera}
-                    className="btn"
+                    className="ibtn"
                     style={{ marginTop: "10px" }}
                   >
-                    <PhotoCamera style={{ marginRight: "10px" }} />
+                    <PhotoCamera />
                     {isCameraOpen ? "Take Photo" : "Open Camera"}
                   </button>
                   {isCameraOpen && (
@@ -482,18 +499,22 @@ const downloadPDF = async () => {
 
           {/* Clear Form Button */}
           <button className="clear-btn"  
-          type="button" onClick={clearForm}>
-            Clear Form
+          type="button" >
+            
           </button> 
 
           {/* Buttons */}
           <div className="contact-buttons w-100">
-            <button className="btn" type="submit">Submit
-            <SendIcon icon={faPaperPlane} style={{ marginLeft: "10px" }} className="icon" />
+            <button className="ibtn" type="submit">
+            <div>
+            Submit
+            </div>
+            <SendIcon className="icon" />
             </button>
-            <button className="btn" type="button" onClick={downloadPDF}>Download PDF
-            <PictureAsPdfIcon icon={faFilePdf} style={{ marginLeft: "10px" }} className="icon" />
-            </button>
+           <button className="btn"  
+          type="button" onClick={clearForm}>
+            Clear Form
+          </button> 
             
           </div>
         </form>
