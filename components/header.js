@@ -22,7 +22,7 @@ const Header = () => {
         <div className="logo">
           <Link href="../">
               {/* Use Next.js Image for better image optimization */}
-              <Image src="../public/images/PHlogo.jpg" alt="Logo" width={150} height={75} />
+              <Image src="images/PHlogo.jpg" alt="Logo" width={150} height={75} />
             
           </Link>
         </div>
