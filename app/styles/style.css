@@ -129,7 +129,7 @@ header a:hover{
   position: absolute;
   right: 2rem;
   top: 70px;
-  width: 300px;
+  width: 200px;
   height: 0;
   background-color: #fffB;
   backdrop-filter: blur(15px);
@@ -139,7 +139,7 @@ header a:hover{
 }
 .dropdown_menu.open{
   padding-top: 10px;
-  height:100px;
+  height:200px;
 
 }
 .dropdown_menu ul{

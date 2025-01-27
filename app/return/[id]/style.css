@@ -66,6 +66,25 @@
   margin-top: 2rem;
 }
 
+.ibtn {
+   display:flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   padding: 15px;
+  gap: 5px;
+  background-color: #141414;
+  color: white;
+  border-radius: 40px;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+
 .signature-section h3,
 .photo-section h3 {
   font-size: 1.2rem;

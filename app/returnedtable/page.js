@@ -49,7 +49,7 @@ const LostFoundTable = () => {
     <div className="datatable">
       <main className="table" id="customers_table">
         <section className="table__header">
-          <h1>Lost & Found Items Table</h1>
+          <h1>Returned Items Table</h1>
         </section>
         <section className="table__body">
           <table>

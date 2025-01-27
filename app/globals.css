@@ -4,25 +4,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 *::-moz-selection { /* Code for Firefox */
-  background:#0072cd;
+  background:#141414;
 }
 html {
-  --accent: #0072cd;
+  --accent: #141414;
   --background: #f9f9f9;
-  background: url(../public/images/bg.png) center / cover;
+  background: url(../public/images/bg.png);
+   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
 }
 *::selection {
-  background:#0072cd;
+  background:#141414;
 }
 
 body{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: var(--accent);
+  color: #141414;
   font-family: "Montserrat", sans-serif;
   margin: 0;
-    
+    background: url(../public/images/bg.png);
+   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
 }
 body::-webkit-scrollbar{
   display: none;
@@ -84,7 +92,7 @@ header li, header a{
   font-weight: 700;
 }
 header a:hover{
-  color:#0072cd;
+  color:#141414;
 }
 .navbar{
   width: 100%;
@@ -119,7 +127,7 @@ header a:hover{
   position: absolute;
   right: 2rem;
   top: 70px;
-  width: 300px;
+  width: 250px;
   height: 0;
   background-color: #fffB;
   backdrop-filter: blur(15px);
@@ -129,7 +137,7 @@ header a:hover{
 }
 .dropdown_menu.open{
   padding-top: 10px;
-  height:100px;
+  height:140px;
 
 }
 .dropdown_menu ul{
@@ -188,7 +196,10 @@ header a:hover{
 
 
 
-
+canvas {
+  height: 150px !important; /* Fixed height to prevent expansion */
+  max-height: 150px;
+}
 
 
 
@@ -245,7 +256,7 @@ form{
   position: relative;
 }
 
-.contact   .input-wrap.w-100{
+.contact .input-wrap.w-100{
   grid-column: span 2;
 }
 
@@ -313,16 +324,16 @@ textarea.contact-input ~ .icon{
 
 .input-wrap.focus .contact-input{
 background-color: white;
-border: 2px solid #0072cd;
+border: 2px solid #141414;
 box-shadow: 0 0 0 5px hsla(208, 91%, 55%, 0.11);
 }
 
 .input-wrap.focus label{
-  color: #0072cd;
+  color: #141414;
 }
 
 .input-wrap.focus .icon{
-color: #0072cd;
+color: #141414;
 }
 
 .input-wrap.not-empty label{
@@ -340,11 +351,29 @@ color: #0072cd;
   font-family: Poppins;
 }
 
+.ibtn {
+   display:flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   padding: 15px;
+  gap: 5px;
+  background-color: #141414;
+  color: white;
+  border-radius: 40px;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
 .btn{
 display: inline-block;
 padding: 15px;
-background-color: #0072cd;
-color: black;
+background-color: #141414;
+color: white;
 border-radius: 40px;
 border: none;
 font-family: "Montserrat", sans-serif;
@@ -361,7 +390,7 @@ transition: 0.3s;
   font-size: 16px;
   border-radius: 50px;
   border: 15px;
-  border-color: #0072cd;
+  border-color: #141414;
   cursor: pointer;
   transition: 0.3s;
 }

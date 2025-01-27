@@ -4,6 +4,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Header = () => {
   // State to control the dropdown menu visibility
@@ -22,8 +24,8 @@ const Header = () => {
         <div className="logo">
           <Link href="../">
               {/* Use Next.js Image for better image optimization */}
-              <Image src="images/PHlogo.jpg" alt="Logo" width={150} height={75} />
-            
+              <Image src="/images/PHlogo.jpg" alt="Logo" width={150} height={75} />
+
           </Link>
         </div>
 
@@ -32,17 +34,17 @@ const Header = () => {
           <ul>
             <li>
               <Link href="../">
-                Lost Report
+                New Lost Report
               </Link>
             </li>
             <li>
               <Link href="../losttable/">
-                Lost Table
+                Lost Items List
               </Link>
             </li>
             <li>
               <Link href="../returnedtable/">
-                Return Table
+                Returned Itmes List
               </Link>
             </li>
           </ul>
@@ -50,11 +52,15 @@ const Header = () => {
 
         {/* Toggle button for mobile menu */}
         <div id="toggle_btn" className="toggle_btn" onClick={toggleMenu}>
-          {/* Font Awesome icons for open/close */}
-          <i
-            id="toggle_btn_Icon"
-            className={`fa-solid ${isMenuOpen ? 'fa-xmark' : 'fa-bars'}`}
-          ></i>
+
+
+
+       {isMenuOpen ? (
+          <CloseIcon id="toggle_btn_Icon" className="toggle_icon" />
+        ) : (
+          <MenuIcon id="toggle_btn_Icon" className="toggle_icon" />
+        )}
+
         </div>
       </div>
 
@@ -62,18 +68,18 @@ const Header = () => {
       <div id="dropdown_menu" className={`dropdown_menu ${isMenuOpen ? 'open' : ''}`}>
         <ul>
           <li>
-            <Link href="./">
-              Lost Report
+            <Link href="../">
+              New Lost Report
             </Link>
           </li>
           <li>
               <Link href="../losttable/">
-                Lost Table
+                Lost items List
               </Link>
           </li>
           <li>
               <Link href="../returnedtable/">
-                Return Table
+                Returned Items List
               </Link>
           </li>
         </ul>
