@@ -31,7 +31,16 @@ const ItemDetails = ({ params }) => {
     <div className="item-details">
       <div className="header-section">
         <h1>Item Details</h1>
-        <p className={`status-label ${item.Status}`}>{item.Status.toUpperCase()}</p>
+        <div className="header-controls">
+          <p className={`status-label ${item.Status}`}>{item.Status.toUpperCase()}</p>
+          <button 
+            onClick={generatePDF} 
+            className="btn"
+            disabled={!item}
+          >
+            Download PDF
+          </button>
+        </div>
       </div>
   
       <div className="item-info">
