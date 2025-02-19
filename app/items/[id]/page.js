@@ -30,8 +30,8 @@ const ItemDetails = ({ params }) => {
   return (
     <div className="item-details">
       <div className="header-section">
-        <h1>Item Details</h1>
-        <div className="header-controls">
+        <h1>Item Detail</h1>
+        <div className="header-section">
           <p className={`status-label ${item.Status}`}>{item.Status.toUpperCase()}</p>
           <button 
             onClick={generatePDF} 
