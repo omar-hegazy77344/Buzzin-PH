@@ -130,8 +130,8 @@ const ItemDetails = ({ params }) => {
           doc.addImage(receiverSignatureImg, getImageFormat(receiverSignatureImg.src), 20, 225, pictureWidth, pictureHeight);
         }
         if (receiverPhotoImg) {
-          doc.text("Receiver's Photo:", 100, 150);
-          doc.addImage(receiverPhotoImg, getImageFormat(receiverPhotoImg.src), 100, 155, pictureWidth, pictureHeight);
+          doc.text("Receiver's Photo:", 100, 220);
+          doc.addImage(receiverPhotoImg, getImageFormat(receiverPhotoImg.src), 100, 225, pictureWidth, pictureHeight);
         }
       }
 
@@ -141,8 +141,8 @@ const ItemDetails = ({ params }) => {
       }
 
       if (itemPhotoImg) {
-        doc.text("Item Photo:", 100, 220);
-        doc.addImage(itemPhotoImg, getImageFormat(itemPhotoImg.src), 100, 225, pictureWidth, pictureHeight);
+        doc.text("Item Photo:", 100, 150);
+        doc.addImage(itemPhotoImg, getImageFormat(itemPhotoImg.src), 100, 155, pictureWidth, pictureHeight);
       }
 
       // Footer
