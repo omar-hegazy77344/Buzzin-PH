@@ -126,7 +126,7 @@ const ItemDetails = ({ params }) => {
       // Image Handling
       if (!isLost) {
         if (receiverSignatureImg) {
-          doc.text("Receiver's Signature:", 20, 150);
+          doc.text("Receiver's Signature:", 20, 220);
           doc.addImage(receiverSignatureImg, getImageFormat(receiverSignatureImg.src), 20, 155, pictureWidth, pictureHeight);
         }
         if (receiverPhotoImg) {
