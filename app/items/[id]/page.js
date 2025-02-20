@@ -175,7 +175,7 @@ const ItemDetails = ({ params }) => {
           <br/>
            <button 
             onClick={generatePDF} 
-            className=""
+            className="pdf_btn"
             disabled={!item}
             >
             Download PDF
