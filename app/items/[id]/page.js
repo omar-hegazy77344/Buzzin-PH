@@ -136,8 +136,8 @@ const ItemDetails = ({ params }) => {
       }
 
       if (signatureImg) {
-        doc.text("Founder's Signature:", 20, 220);
-        doc.addImage(signatureImg, getImageFormat(signatureImg.src), 20, 225, pictureWidth, pictureHeight);
+        doc.text("Founder's Signature:", 20, 150);
+        doc.addImage(signatureImg, getImageFormat(signatureImg.src), 20, 155, pictureWidth, pictureHeight);
       }
 
       if (itemPhotoImg) {
