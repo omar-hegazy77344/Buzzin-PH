@@ -22,7 +22,7 @@
   color: #333;
 }
 
-.header-section{
+.header-controls{
   display: flex;
   justify-content: space-between;
   align-items: center;
