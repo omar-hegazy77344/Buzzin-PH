@@ -52,6 +52,8 @@
   text-transform: uppercase;
   font-weight: bold;
   font-size: 0.9rem;
+  border-radius: 12px;
+  border-color:  #fca714;
   background-color: #fca714;
   color: #fff;
 }
