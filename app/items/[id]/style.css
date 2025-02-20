@@ -40,6 +40,16 @@
   color: #fff;
 }
 
+.pdf_btn {
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.9rem;
+  background-color: #fca714;
+  color: #fff;
+}
+
 .item-info p {
   font-size: 1.1rem;
   line-height: 1.8;
