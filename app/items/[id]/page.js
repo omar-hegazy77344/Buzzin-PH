@@ -71,7 +71,12 @@ const ItemDetails = ({ params }) => {
 
       // Header Section
       doc.setFontSize(18);
-      doc.text("Lost And Found Report", 105, 20, { align: "center" });
+     if (isLost) {
+         doc.text("Lost Item Report", 105, 20, { align: "center" });
+      } else{
+         doc.text("Lost And Found Report", 105, 20, { align: "center" });
+      }
+     
       if (logoImg) doc.addImage(logoImg, getImageFormat(logoImg.src), 10, 10, 40, 20);
       
       doc.setFontSize(10);
