@@ -174,7 +174,7 @@ const ItemDetails = ({ params }) => {
           <p className={`status-label ${item.Status}`}>{item.Status.toUpperCase()}</p>
           <button 
             onClick={generatePDF} 
-            className="btn"
+            className="pdf_btn"
             disabled={!item}
           >
             Download PDF
