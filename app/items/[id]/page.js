@@ -127,7 +127,7 @@ const ItemDetails = ({ params }) => {
       if (!isLost) {
         if (receiverSignatureImg) {
           doc.text("Receiver's Signature:", 20, 220);
-          doc.addImage(receiverSignatureImg, getImageFormat(receiverSignatureImg.src), 20, 155, pictureWidth, pictureHeight);
+          doc.addImage(receiverSignatureImg, getImageFormat(receiverSignatureImg.src), 20, 225, pictureWidth, pictureHeight);
         }
         if (receiverPhotoImg) {
           doc.text("Receiver's Photo:", 100, 150);
@@ -174,7 +174,7 @@ const ItemDetails = ({ params }) => {
           <p className={`status-label ${item.Status}`}>{item.Status.toUpperCase()}</p>
           <button 
             onClick={generatePDF} 
-            className="download-button"
+            className="btn"
             disabled={!item}
           >
             Download PDF
