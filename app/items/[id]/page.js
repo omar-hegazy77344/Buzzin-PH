@@ -119,7 +119,7 @@ const ItemDetails = ({ params }) => {
         doc.setFont("helvetica", "bold");
         doc.text(label, 20, yOffset);
         doc.setFont("helvetica", "normal");
-        doc.text(value.toString(), 60, yOffset);
+        doc.text(value ? value.toString() : '', 60, yOffset);
         yOffset += 10;
       });
 
