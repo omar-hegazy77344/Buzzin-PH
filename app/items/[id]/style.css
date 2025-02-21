@@ -22,12 +22,20 @@
   color: #333;
 }
 
+.header-control{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
 .status-label {
   padding: 0.5rem 1rem;
   border-radius: 12px;
   text-transform: uppercase;
   font-weight: bold;
   font-size: 0.9rem;
+  text-align: center;
 }
 
 .status-label.lost {
@@ -37,6 +45,17 @@
 
 .status-label.returned {
   background-color: #27ae60;
+  color: #fff;
+}
+
+.pdf_btn {
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.9rem;
+  border-radius: 12px;
+  border-width: 0px;
+  background-color: #fca714;
   color: #fff;
 }
 

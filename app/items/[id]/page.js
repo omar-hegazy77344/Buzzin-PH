@@ -71,7 +71,12 @@ const ItemDetails = ({ params }) => {
 
       // Header Section
       doc.setFontSize(18);
-      doc.text("Lost And Found Report", 105, 20, { align: "center" });
+     if (isLost) {
+         doc.text("Lost Item Report", 105, 20, { align: "center" });
+      } else{
+         doc.text("Lost And Found Report", 105, 20, { align: "center" });
+      }
+     
       if (logoImg) doc.addImage(logoImg, getImageFormat(logoImg.src), 10, 10, 40, 20);
       
       doc.setFontSize(10);
@@ -119,30 +124,30 @@ const ItemDetails = ({ params }) => {
         doc.setFont("helvetica", "bold");
         doc.text(label, 20, yOffset);
         doc.setFont("helvetica", "normal");
-        doc.text(value.toString(), 60, yOffset);
+        doc.text(value ? value.toString() : '', 60, yOffset);
         yOffset += 10;
       });
 
       // Image Handling
       if (!isLost) {
         if (receiverSignatureImg) {
-          doc.text("Receiver's Signature:", 20, 150);
-          doc.addImage(receiverSignatureImg, getImageFormat(receiverSignatureImg.src), 20, 155, pictureWidth, pictureHeight);
+          doc.text("Receiver's Signature:", 20, 220);
+          doc.addImage(receiverSignatureImg, getImageFormat(receiverSignatureImg.src), 20, 225, pictureWidth, pictureHeight);
         }
         if (receiverPhotoImg) {
-          doc.text("Receiver's Photo:", 100, 150);
-          doc.addImage(receiverPhotoImg, getImageFormat(receiverPhotoImg.src), 100, 155, pictureWidth, pictureHeight);
+          doc.text("Receiver's Photo:", 100, 220);
+          doc.addImage(receiverPhotoImg, getImageFormat(receiverPhotoImg.src), 100, 225, pictureWidth, pictureHeight);
         }
       }
 
       if (signatureImg) {
-        doc.text("Founder's Signature:", 20, 220);
-        doc.addImage(signatureImg, getImageFormat(signatureImg.src), 20, 225, pictureWidth, pictureHeight);
+        doc.text("Founder's Signature:", 20, 150);
+        doc.addImage(signatureImg, getImageFormat(signatureImg.src), 20, 155, pictureWidth, pictureHeight);
       }
 
       if (itemPhotoImg) {
-        doc.text("Item Photo:", 100, 220);
-        doc.addImage(itemPhotoImg, getImageFormat(itemPhotoImg.src), 100, 225, pictureWidth, pictureHeight);
+        doc.text("Item Photo:", 100, 150);
+        doc.addImage(itemPhotoImg, getImageFormat(itemPhotoImg.src), 100, 155, pictureWidth, pictureHeight);
       }
 
       // Footer
@@ -172,11 +177,12 @@ const ItemDetails = ({ params }) => {
         <h1>Item Details</h1>
         <div className="header-controls">
           <p className={`status-label ${item.Status}`}>{item.Status.toUpperCase()}</p>
-          <button 
+          <br/>
+           <button 
             onClick={generatePDF} 
-            className="download-button"
+            className="pdf_btn"
             disabled={!item}
-          >
+            >
             Download PDF
           </button>
         </div>
