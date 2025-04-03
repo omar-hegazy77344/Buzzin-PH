@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import './table.css';
 import DescriptionIcon from '@mui/icons-material/Description';
+import withAuth from '@/lib/withAuth';
+
 const LostFoundTable = () => {
   const [items, setItems] = useState([]);
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
@@ -144,4 +146,4 @@ const LostFoundTable = () => {
   );
 };
 
-export default LostFoundTable;
+export default withAuth(LostFoundTable);

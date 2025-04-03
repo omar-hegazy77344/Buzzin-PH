@@ -10,7 +10,7 @@ import NumbersIcon from '@mui/icons-material/Numbers';
 import PersonIcon from '@mui/icons-material/Person';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
-
+import withAuth from '@/lib/withAuth';
 
 const LostAndFoundReport = () => {
 
@@ -354,4 +354,4 @@ const clearForm = () => {
   );
 };
 
-export default LostAndFoundReport;
+export default withAuth(LostAndFoundReport);

@@ -6,8 +6,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import {useAuth} from "../lib/authContext";
+import { signOut } from "firebase/auth"
+import { auth } from "../firebase"
 
 const Header = () => {
+  const { user } = useAuth();
+
   // State to control the dropdown menu visibility
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -15,6 +20,18 @@ const Header = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen); // Toggle the state
   };
+
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth)
+      console.log("User signed out")
+    } catch (error) {
+      console.error("Error signing out:", error)
+    }
+  }
+
+
 
   return (
     <header>
@@ -49,13 +66,21 @@ const Header = () => {
             </li>
           </ul>
         </div>
-
+        {user&&(
+          <button
+        onClick={handleSignOut}
+        className="clear-btn out"
+      >
+        Sign Out
+      </button>
+    )}
+      
         {/* Toggle button for mobile menu */}
         <div id="toggle_btn" className="toggle_btn" onClick={toggleMenu}>
 
 
 
-       {isMenuOpen ? (
+      {isMenuOpen ? (
           <CloseIcon id="toggle_btn_Icon" className="toggle_icon" />
         ) : (
           <MenuIcon id="toggle_btn_Icon" className="toggle_icon" />

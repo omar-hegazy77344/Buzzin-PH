@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { use } from 'react';
 import "./style.css";
 import jsPDF from 'jspdf';
-
+import withAuth from '@/lib/withAuth';
 const ItemDetails = ({ params }) => {
   const { id } = use(params);
   const [item, setItem] = useState(null);
@@ -252,4 +252,4 @@ const ItemDetails = ({ params }) => {
   );
 };
 
-export default ItemDetails;
+export default withAuth(ItemDetails);

@@ -394,7 +394,14 @@ transition: 0.3s;
   cursor: pointer;
   transition: 0.3s;
 }
-
+.out{
+  font-weight: 700;
+  font-size: 18px;
+}
+.out:hover{
+  background-color:#fff;
+  
+}
 .btn:hover{
   background-color:#222939;
   color: #fff;
@@ -446,7 +453,24 @@ canvas {
   top:10%;
 }
 
+.error-box {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #ffdddd;
+  color: #d8000c;
+  border: 1px solid #d8000c;
+  border-radius: 5px;
+}
 
+.refresh-button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #d8000c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
 footer {
   background-color: #fff1;

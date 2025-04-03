@@ -5,11 +5,9 @@
 
 @font-face {
   font-family: "Gotham Rounded";
-  src: url('../gotham/GothamRounded-Medium.otf');
+  
 }
 @font-face {
-  font-family: "Gotham Rounded";
-  src: url('../gotham/GothamRounded-Bold.otf');
   font-weight: bold;
 }
 *::-moz-selection { /* Code for Firefox */
@@ -378,6 +376,10 @@ transition: 0.3s;
   border: none;
   cursor: pointer;
   transition: 0.3s;
+}
+
+.out{
+  font-style: bold;
 }
 
 .btn:hover{

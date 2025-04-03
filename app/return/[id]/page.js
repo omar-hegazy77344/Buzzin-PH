@@ -15,6 +15,8 @@ import PersonIcon from '@mui/icons-material/Person';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
 import { Cameraswitch, PhotoCamera } from '@mui/icons-material';
+import withAuth from '@/lib/withAuth';
+
 const ReturnReport = ({ params }) => {
 
   const { id } = use(params); // Unwrap params to access id
@@ -523,4 +525,4 @@ const downloadPDF = async () => {
   );
 };
 
-export default ReturnReport;
+export default withAuth(ReturnReport);
