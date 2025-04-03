@@ -86,7 +86,7 @@ header{
 header li, header a{
   text-decoration: none;
   color: #222939;
-  font-size: 1.3rem;
+  font-size: 18px;
   /* font-family:  */
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
@@ -137,7 +137,7 @@ header a:hover{
 }
 .dropdown_menu.open{
   padding-top: 10px;
-  height:140px;
+  height:160px;
 
 }
 .dropdown_menu ul{
@@ -154,7 +154,19 @@ header a:hover{
   font-weight: bold;
 }
 
+.dropdown_menu .signout{
+  padding-left: 0.6rem;
+  font-size: 17px;
+  font-weight: bold;
+}
+
 /* responsive */
+@media screen and (max-width: 1320px) {
+  header li, header a, header .out{
+    font-size: 14.5px;
+  }
+}
+
 @media screen and (max-width: 1068px) {
   .navbar{
     justify-content: space-between;
@@ -278,6 +290,19 @@ form{
   box-shadow: 0 0 0 0px hsla(208, 92%, 54%, 0.169);
 }
 
+.info-box{
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 2rem 0.5rem calc(0.75rem - 2px) 1.35rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 15px;
+  background-color: hsla(208, 50%, 50%, 6.5%);
+  border: 2px solid transparent;
+  box-shadow: 0 0 0 0px hsla(208, 92%, 54%, 0.169);
+}
+
 .contact-input:hover{
   background-color: hsla(208, 50%, 50%, 14%);
 }
@@ -304,6 +329,21 @@ form{
   color: #8c9aaf;
   font-size: 1.15rem;
   transition: 0.3s;
+}
+.input-wrap .infoicon{
+  position: absolute;
+  left: 7rem;
+  top:19%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #141414;
+  font-size: 1.15rem;
+  transition: 0.3s;
+}
+.input-wrap.not-empty .infolable{
+  font-size: 15px;
+  font-weight: 600;
+  
 }
 
 textarea.contact-input{

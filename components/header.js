@@ -64,9 +64,7 @@ const Header = () => {
                 Returned Itmes List
               </Link>
             </li>
-          </ul>
-        </div>
-        {user&&(
+            {user&&(
           <button
         onClick={handleSignOut}
         className="clear-btn out"
@@ -74,6 +72,10 @@ const Header = () => {
         Sign Out
       </button>
     )}
+          </ul>
+          
+        </div>
+        
       
         {/* Toggle button for mobile menu */}
         <div id="toggle_btn" className="toggle_btn" onClick={toggleMenu}>
@@ -108,6 +110,14 @@ const Header = () => {
               </Link>
           </li>
         </ul>
+        {user&&(
+          <button
+        onClick={handleSignOut}
+        className="clear-btn signout"
+      >
+        Sign Out
+      </button>
+    )}
       </div>
     </header>
   );

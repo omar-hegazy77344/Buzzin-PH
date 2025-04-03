@@ -22,7 +22,6 @@ const LostAndFoundReport = () => {
     const canvasRef = useRef(null);
     const signatureInputRef = useRef(null);
 
-
     const videoRef = useRef(null);
     const photoCanvasRef = useRef(null);
     const [isCameraOpen, setIsCameraOpen] = useState(false);

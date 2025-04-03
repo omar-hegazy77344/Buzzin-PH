@@ -178,7 +178,7 @@ const ItemDetails = ({ params }) => {
         <div className="header-controls">
           <p className={`status-label ${item.Status}`}>{item.Status.toUpperCase()}</p>
           <br/>
-           <button 
+          <button 
             onClick={generatePDF} 
             className="pdf_btn"
             disabled={!item}
