@@ -167,6 +167,7 @@ const FoodReport = ({ params }) => {
       ContactInfo: inputRefs.current[2]?.value || '',
       signatureImage: signaturePadRef.current.isEmpty() ? "" : signaturePadRef.current.toDataURL(),
       photoImage: photo || " ",
+      Status: "Food",
     };
 
     // if (!formData.photoImage) {

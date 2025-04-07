@@ -46,7 +46,7 @@ const ItemDetails = ({ params }) => {
     try {
       setPdfError(null);
       if (!item) throw new Error('No item data available');
-      
+
       const doc = new jsPDF();
       const currentDate = new Date();
       const isLost = item.Status === "lost";
@@ -71,14 +71,14 @@ const ItemDetails = ({ params }) => {
 
       // Header Section
       doc.setFontSize(18);
-     if (isLost) {
-         doc.text("Lost Item Report", 105, 20, { align: "center" });
-      } else{
-         doc.text("Lost And Found Report", 105, 20, { align: "center" });
+      if (isLost) {
+        doc.text("Lost Item Report", 105, 20, { align: "center" });
+      } else {
+        doc.text("Lost And Found Report", 105, 20, { align: "center" });
       }
-     
+
       if (logoImg) doc.addImage(logoImg, getImageFormat(logoImg.src), 10, 10, 40, 20);
-      
+
       doc.setFontSize(10);
       doc.text(currentDate.toLocaleString(), 200, 20, { align: "right" });
       doc.setLineWidth(0.5);
@@ -172,17 +172,17 @@ const ItemDetails = ({ params }) => {
   return (
     <div className="item-details">
       {pdfError && <div className="pdf-error">{pdfError}</div>}
-      
+
       <div className="header-section">
         <h1>Item Details</h1>
         <div className="header-controls">
           <p className={`status-label ${item.Status}`}>{item.Status.toUpperCase()}</p>
-          <br/>
-          <button 
-            onClick={generatePDF} 
+          <br />
+          <button
+            onClick={generatePDF}
             className="pdf_btn"
             disabled={!item}
-            >
+          >
             Download PDF
           </button>
         </div>
@@ -225,16 +225,25 @@ const ItemDetails = ({ params }) => {
             <p><strong>Date Received:</strong> {new Date(item.createdAt).toLocaleDateString()}</p>
             <p><strong>Time Received:</strong> {new Date(item.createdAt).toLocaleTimeString()}</p>
           </>
-        ) : (
+        ) :item.Status === "food" ?(      
+          <>
+          <p><strong>Receiver Name:</strong> {item.Name}</p>
+          <p><strong>Receiver ID:</strong> {item.ID}</p>
+          <p><strong>Receiver Contact Info:</strong> {item.ContactInfo}</p>
+          <p><strong>Date Received:</strong> {new Date(item.createdAt).toLocaleDateString()}</p>
+          <p><strong>Time Received:</strong> {new Date(item.createdAt).toLocaleTimeString()}</p>
+        </>
+        ): (
           <p><strong>Status:</strong> Unknown</p>
         )}
+
       </div>
 
       <div className="details-section">
         <div className="photo-section">
           <h3>Photo</h3>
           <img
-            src={item.Status === "lost" ? item.photoImage : item.ReciverImage}
+            src={item.Status === "lost" ? item.photoImage : item.Status==="returned" ? item.ReciverImage : item.photoImage }
             alt="Item"
             className="image-preview"
           />
@@ -242,7 +251,7 @@ const ItemDetails = ({ params }) => {
         <div className="signature-section">
           <h3>Signature</h3>
           <img
-            src={item.Status === "lost" ? item.signatureImage : item.Reciversignature}
+            src={item.Status === "lost" ? item.signatureImage : item.Status==="returned" ? item.Reciversignature: item.signatureImage}
             alt="Signature"
             className="image-preview"
           />

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import connectMongo from '@/lib/mongodb';
 import Lost from '@/lib/models/lost';
 import Returned from '@/lib/models/returned';
+import Food from '@/lib/models/food';
 import { ObjectId } from 'mongodb';
 
 export async function GET(req, { params }) {
@@ -17,7 +18,13 @@ export async function GET(req, { params }) {
     if (!item) {
       item = await Returned.findOne(query);
       if (item) item.Status = 'returned';
-    } else {
+    } else 
+    if(!item)
+        {
+          item = await Food.findOne(query);
+          if (item) item.Status = 'food';
+        }
+      else {
       item.Status = 'lost';
     }
 
