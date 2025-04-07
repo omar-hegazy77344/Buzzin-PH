@@ -287,7 +287,9 @@ form{
   border: 2px solid transparent;
   box-shadow: 0 0 0 0px hsla(208, 92%, 54%, 0.169);
 }
-
+.w50{
+  width: 50%;
+}
 .info-box{
   width: 100%;
   border: none;

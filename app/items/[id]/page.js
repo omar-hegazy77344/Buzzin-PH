@@ -118,9 +118,8 @@ const ItemDetails = ({ params }) => {
           ["Date Received:", new Date(item.createdAt).toLocaleDateString()],
           ["Time Received:", new Date(item.createdAt).toLocaleTimeString()]
         ];
-      }else if (item.Status === "food") {
+      } else if (item.Status === "food") {
         fields = [
-          ["Food Delivery Disclaimer:", "I, the undersigned, acknowledge that I have requested food delivery to Park Hyatt and I fully agree that the hotel is not liable for any consequences that may result due to the consumption of the food I ordered."],
           ["Receiver Name:", item.Name],
           ["Receiver ID:", item.ID],
           ["Receiver Contact Info:", item.ContactInfo],
@@ -137,7 +136,20 @@ const ItemDetails = ({ params }) => {
         doc.text(value ? value.toString() : '', 60, yOffset);
         yOffset += 10;
       });
+      // Disclaimer Section (multi-line)
+      if (item.Status === "food") {
+        const disclaimerTitle = "Food Delivery Disclaimer:";
+        const disclaimerText = "I, the undersigned, acknowledge that I have requested food delivery to Park Hyatt and I fully agree that the hotel is not liable for any consequences that may result due to the consumption of the food I ordered.";
 
+        doc.setFont("helvetica", "bold");
+        doc.text(disclaimerTitle, 20, yOffset);
+        yOffset += 10;
+
+        doc.setFont("helvetica", "normal");
+        const splitText = doc.splitTextToSize(disclaimerText, 170); // Wrap at 170px width
+        doc.text(splitText, 20, yOffset);
+        yOffset += splitText.length * 10;
+      }
       // Image Handling
       if (!isLost) {
         if (receiverSignatureImg) {
@@ -153,17 +165,17 @@ const ItemDetails = ({ params }) => {
       if (item.Status === "food" && signatureImg) {
         doc.text("Receiver's Signature:", 20, yOffset + 10);
         doc.addImage(signatureImg, getImageFormat(signatureImg.src), 20, yOffset + 15, pictureWidth, pictureHeight);
-      }else if (signatureImg) {
+      } else if (signatureImg) {
         doc.text("Founder's Signature:", 20, 150);
         doc.addImage(signatureImg, getImageFormat(signatureImg.src), 20, 155, pictureWidth, pictureHeight);
-      } 
+      }
 
       if (itemPhotoImg) {
         doc.text("Item Photo:", 100, 150);
         doc.addImage(itemPhotoImg, getImageFormat(itemPhotoImg.src), 100, 155, pictureWidth, pictureHeight);
-      }else if (item.Status === "food" && itemPhotoImg) {
+      } else if (item.Status === "food" && item.photoImage) {
         doc.text("Item Photo:", 100, 150);
-        doc.addImage(itemPhotoImg, getImageFormat(itemPhotoImg.src), 100, 155, pictureWidth, pictureHeight);
+        doc.addImage(item.photoImage, getImageFormat(item.photoImage.src), 100, 155, pictureWidth, pictureHeight);
       }
       // Footer
       doc.setLineWidth(0.5);
@@ -204,15 +216,14 @@ const ItemDetails = ({ params }) => {
       </div>
 
       <div className="item-info">
-      {item.Status === "lost" || item.Status === "returned" ? (<h3><strong>Item Name:</strong> {item.ItemName}</h3>) : (
-        <div className="input-wrap w-100 not-empty focus"> 
-          <h3><strong>Food Delivery Disclaimer:</strong> </h3> 
-          <p className="info-box">
-            I, the udersigned, acknowledge that I have requested food delivery to Park Hyatt and I fully agree that the hotel is not liable for any consequences that may result due to the consumption of the food I ordered.
-          </p>
-          <label className="infolable">Disclaimer </label>
-          <InfoIcon className="infoicon" />
-      </div> )}
+        {item.Status === "lost" || item.Status === "returned" ? (<h3><strong>Item Name:</strong> {item.ItemName}</h3>) : (
+          <div>
+            <h3><strong>Food Delivery Disclaimer:</strong> </h3>
+            <InfoIcon/>
+            <p className="info-box w50">
+              I, the udersigned, acknowledge that I have requested food delivery to Park Hyatt and I fully agree that the hotel is not liable for any consequences that may result due to the consumption of the food I ordered.
+            </p>
+          </div>)}
 
         {item.Status === "returned" && (
           <div className="image-section">
@@ -248,15 +259,15 @@ const ItemDetails = ({ params }) => {
             <p><strong>Date Received:</strong> {new Date(item.createdAt).toLocaleDateString()}</p>
             <p><strong>Time Received:</strong> {new Date(item.createdAt).toLocaleTimeString()}</p>
           </>
-        ) :item.Status === "food" ?(      
+        ) : item.Status === "food" ? (
           <>
-          <p><strong>Receiver Name:</strong> {item.Name}</p>
-          <p><strong>Receiver ID:</strong> {item.ID}</p>
-          <p><strong>Receiver Contact Info:</strong> {item.ContactInfo}</p>
-          <p><strong>Date Received:</strong> {new Date(item.createdAt).toLocaleDateString()}</p>
-          <p><strong>Time Received:</strong> {new Date(item.createdAt).toLocaleTimeString()}</p>
-        </>
-        ): (
+            <p><strong>Receiver Name:</strong> {item.Name}</p>
+            <p><strong>Receiver ID:</strong> {item.ID}</p>
+            <p><strong>Receiver Contact Info:</strong> {item.ContactInfo}</p>
+            <p><strong>Date Received:</strong> {new Date(item.createdAt).toLocaleDateString()}</p>
+            <p><strong>Time Received:</strong> {new Date(item.createdAt).toLocaleTimeString()}</p>
+          </>
+        ) : (
           <p><strong>Status:</strong> Unknown</p>
         )}
 
@@ -266,7 +277,7 @@ const ItemDetails = ({ params }) => {
         <div className="photo-section">
           <h3>Photo</h3>
           <img
-            src={item.Status === "lost" ? item.photoImage : item.Status==="returned" ? item.ReciverImage : item.photoImage }
+            src={item.Status === "lost" ? item.photoImage : item.Status === "returned" ? item.ReciverImage : item.photoImage}
             alt="Item"
             className="image-preview"
           />
@@ -274,7 +285,7 @@ const ItemDetails = ({ params }) => {
         <div className="signature-section">
           <h3>Signature</h3>
           <img
-            src={item.Status === "lost" ? item.signatureImage : item.Status==="returned" ? item.Reciversignature: item.signatureImage}
+            src={item.Status === "lost" ? item.signatureImage : item.Status === "returned" ? item.Reciversignature : item.signatureImage}
             alt="Signature"
             className="image-preview"
           />
