@@ -14,15 +14,19 @@ export async function GET(req, { params }) {
     // Try to find item in "lost" collection
     let item = await Lost.findOne(query);
 
-    // If not found in "lost," try the "found" collection
-    if (!item) {
+    if (item) {
+      item.Status = 'lost';
+    } else {
       item = await Returned.findOne(query);
-      if (item) item.Status = 'returned';
-    } else 
-        {
-          item = await Food.findOne(query);
-          if (item) item.Status = 'food';
+      if (item) {
+        item.Status = 'returned';
+      } else {
+        item = await Food.findOne(query);
+        if (item) {
+          item.Status = 'food';
         }
+      }
+    }
 
     if (!item) {
       return NextResponse.json({ error: 'Item not found' }, { status: 404 });
