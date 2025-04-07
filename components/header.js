@@ -55,6 +55,11 @@ const Header = () => {
               </Link>
             </li>
             <li>
+              <Link href="../food/">
+                New Food Report
+              </Link>
+            </li>
+            <li>
               <Link href="../losttable/">
                 Lost Items List
               </Link>
@@ -105,6 +110,11 @@ const Header = () => {
             </Link>
           </li>
           <li>
+              <Link href="../food/">
+                New Food Report
+              </Link>
+            </li>
+          <li>
               <Link href="../losttable/">
                 Lost items List
               </Link>
@@ -114,6 +124,11 @@ const Header = () => {
                 Returned Items List
               </Link>
           </li>
+          <li>
+              <Link href="../foodtable/">
+                Food Itmes List
+              </Link>
+            </li>
         </ul>
         {user&&(
           <button
