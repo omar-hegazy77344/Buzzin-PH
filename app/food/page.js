@@ -163,10 +163,10 @@ const FoodReport = ({ params }) => {
 
     const formData = {
       Name: inputRefs.current[0]?.value || '',
-      ID: inputRefs.current[1]?.value || '',
-      ContactInfo: inputRefs.current[2]?.value || '',
+      Unit: inputRefs.current[1]?.value || '',
+      ContactInfo: inputRefs.current[2]?.value || 'Not Available',
       signatureImage: signaturePadRef.current.isEmpty() ? "" : signaturePadRef.current.toDataURL(),
-      photoImage: photo || " ",
+      photoImage: photo || "Not Available",
       Status: "food",
     };
 
@@ -319,16 +319,16 @@ const FoodReport = ({ params }) => {
             <PersonIcon className="icon" />
           </div>
 
-          {/* Reciver ID */}
+          {/*Room no. */}
           <div className="input-wrap">
-            <input className="contact-input" name="Reciver ID" type="text" ref={(el) => (inputRefs.current[1] = el)} required />
-            <label>Receiver  ID:</label>
+            <input className="contact-input" name="Room No." type="text" ref={(el) => (inputRefs.current[1] = el)} required />
+            <label>Room No.:</label>
             <BadgeIcon className="icon" />
           </div>
 
           {/* Reciver Contact Info */}
           <div className="input-wrap">
-            <input className="contact-input" autoComplete="off" name="Reciver Contact Info" type="tel" required ref={(el) => (inputRefs.current[2] = el)} />
+            <input className="contact-input" autoComplete="off" name="Reciver Contact Info" type="tel" ref={(el) => (inputRefs.current[2] = el)} />
             <label htmlFor="phone"> Contact Info.</label>
             <LocalPhoneIcon className="icon" />
           </div>

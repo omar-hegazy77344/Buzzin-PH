@@ -51,12 +51,12 @@ const Header = () => {
           <ul>
             <li>
               <Link href="../">
-                New Lost Report
+                Report Lost Item
               </Link>
             </li>
             <li>
               <Link href="../food/">
-                New Food Report
+                Food Delivery Form
               </Link>
             </li>
             <li>
@@ -71,7 +71,7 @@ const Header = () => {
             </li>
             <li>
               <Link href="../foodtable/">
-                Food Itmes List
+                Food Delivery Logs
               </Link>
             </li>
             {user&&(
@@ -106,12 +106,12 @@ const Header = () => {
         <ul>
           <li>
             <Link href="../">
-              New Lost Report
+              Report Lost Item
             </Link>
           </li>
           <li>
               <Link href="../food/">
-                New Food Report
+              Food Delivery Form
               </Link>
             </li>
           <li>
@@ -126,7 +126,7 @@ const Header = () => {
           </li>
           <li>
               <Link href="../foodtable/">
-                Food Itmes List
+              Food Delivery Logs
               </Link>
             </li>
         </ul>

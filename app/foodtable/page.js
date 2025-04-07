@@ -44,14 +44,14 @@ const LostFoundTable = () => {
     <div className="datatable">
       <main className="table" id="customers_table">
         <section className="table__header">
-          <h1>Food Table</h1>
+          <h1>Food Devilvery Logs</h1>
         </section>
         <section className="table__body">
           <table>
             <thead>
               <tr>
                 <th>Name</th>
-                <th>ID No.</th>
+                <th>Room No.</th>
                 <th>Date</th>
                 <th>Time</th>
                 <th>Signature</th>
@@ -69,7 +69,7 @@ const LostFoundTable = () => {
                     />
                     {item.Name}
                   </td>
-                  <td>{item.ID}</td>
+                  <td>{item.Unit}</td>
                   <td>{new Date(item.createdAt).toLocaleDateString()}</td>
                   <td>{new Date(item.createdAt).toLocaleTimeString()}</td>
                   <td>

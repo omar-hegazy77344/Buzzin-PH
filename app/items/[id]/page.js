@@ -123,7 +123,7 @@ const ItemDetails = ({ params }) => {
       } else if (item.Status === "food") {
         fields = [
           ["Receiver Name:", item.Name],
-          ["Receiver ID:", item.ID],
+          ["Room No:", item.Unit],
           ["Receiver Contact Info:", item.ContactInfo],
           ["Date Received:", new Date(item.createdAt).toLocaleDateString()],
           ["Time Received:", new Date(item.createdAt).toLocaleTimeString()]
@@ -263,7 +263,7 @@ const ItemDetails = ({ params }) => {
         ) : item.Status === "food" ? (
           <>
             <p><strong>Receiver Name:</strong> {item.Name}</p>
-            <p><strong>Receiver ID:</strong> {item.ID}</p>
+            <p><strong>Room No.:</strong> {item.Unit}</p>
             <p><strong>Contact Details:</strong> {item.ContactInfo}</p>
             <p><strong>Date Received:</strong> {new Date(item.createdAt).toLocaleDateString()}</p>
             <p><strong>Time Received:</strong> {new Date(item.createdAt).toLocaleTimeString()}</p>
