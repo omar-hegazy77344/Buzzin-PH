@@ -289,6 +289,15 @@ form{
 }
 .w50{
   width: 50%;
+  border: none;
+  outline: none;
+  padding: 2rem 0.5rem calc(0.75rem - 2px) 1.35rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 15px;
+  background-color: hsla(208, 50%, 50%, 6.5%);
+  border: 2px solid transparent;
+  box-shadow: 0 0 0 0px hsla(208, 92%, 54%, 0.169);
 }
 .info-box{
   width: 100%;

@@ -72,10 +72,12 @@ const ItemDetails = ({ params }) => {
 
       // Header Section
       doc.setFontSize(18);
-      if (isLost) {
+      if (item.Status === "lost") {
         doc.text("Lost Item Report", 105, 20, { align: "center" });
-      } else {
+      }else if (item.Status === "returned") {
         doc.text("Lost And Found Report", 105, 20, { align: "center" });
+      } else if (item.Status === "food"){
+        doc.text("Food Delivery Disclaimer Report", 105, 20, { align: "center" });
       }
 
       if (logoImg) doc.addImage(logoImg, getImageFormat(logoImg.src), 10, 10, 40, 20);
@@ -218,8 +220,8 @@ const ItemDetails = ({ params }) => {
       <div className="item-info">
         {item.Status === "lost" || item.Status === "returned" ? (<h3><strong>Item Name:</strong> {item.ItemName}</h3>) : (
           <div>
-            <h3><strong>Food Delivery Disclaimer:<InfoIcon/></strong> </h3>
-            <p className="info-box w50">
+            <h3><strong>Food Delivery Disclaimer:</strong> </h3>
+            <p className="w50">
               I, the udersigned, acknowledge that I have requested food delivery to Park Hyatt and I fully agree that the hotel is not liable for any consequences that may result due to the consumption of the food I ordered.
             </p>
           </div>)}
