@@ -264,7 +264,7 @@ const ItemDetails = ({ params }) => {
           <>
             <p><strong>Receiver Name:</strong> {item.Name}</p>
             <p><strong>Receiver ID:</strong> {item.ID}</p>
-            <p><strong>Receiver Contact Info:</strong> {item.ContactInfo}</p>
+            <p><strong>Contact Details:</strong> {item.ContactInfo}</p>
             <p><strong>Date Received:</strong> {new Date(item.createdAt).toLocaleDateString()}</p>
             <p><strong>Time Received:</strong> {new Date(item.createdAt).toLocaleTimeString()}</p>
           </>
