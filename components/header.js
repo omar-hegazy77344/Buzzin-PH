@@ -64,6 +64,11 @@ const Header = () => {
                 Returned Itmes List
               </Link>
             </li>
+            <li>
+              <Link href="../foodtable/">
+                Food Itmes List
+              </Link>
+            </li>
             {user&&(
           <button
         onClick={handleSignOut}
