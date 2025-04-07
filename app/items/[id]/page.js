@@ -190,7 +190,9 @@ const ItemDetails = ({ params }) => {
       </div>
 
       <div className="item-info">
-      {item.Status === "lost" || item.Status === "returned" ? (<h3><strong>Item Name:</strong> {item.ItemName}</h3>) : (<div> <h3><strong>Food Delivery Disclaimer:</strong> </h3> 
+      {item.Status === "lost" || item.Status === "returned" ? (<h3><strong>Item Name:</strong> {item.ItemName}</h3>) : (
+        <div className="input-wrap w-100 not-empty focus"> 
+        <h3><strong>Food Delivery Disclaimer:</strong> </h3> 
         <p className="info-box">
             I, the udersigned, acknowledge that I have requested food delivery to Park Hyatt and I fully agree that the hotel is not liable for any consequences that may result due to the consumption of the food I ordered.
           </p>
