@@ -4,6 +4,7 @@ import { use } from 'react';
 import "./style.css";
 import jsPDF from 'jspdf';
 import withAuth from '@/lib/withAuth';
+import InfoIcon from '@mui/icons-material/Info';
 const ItemDetails = ({ params }) => {
   const { id } = use(params);
   const [item, setItem] = useState(null);
@@ -189,7 +190,13 @@ const ItemDetails = ({ params }) => {
       </div>
 
       <div className="item-info">
-        <h3><strong>Item Name:</strong> {item.ItemName}</h3>
+      {item.Status === "lost" || item.Status === "returned" ? (<h3><strong>Item Name:</strong> {item.ItemName}</h3>) : (<div> <h3><strong>Food Delivery Disclaimer:</strong> </h3> 
+        <p className="info-box">
+            I, the udersigned, acknowledge that I have requested food delivery to Park Hyatt and I fully agree that the hotel is not liable for any consequences that may result due to the consumption of the food I ordered.
+          </p>
+          <label className="infolable">Disclaimer </label>
+          <InfoIcon className="infoicon" />
+      </div> )}
 
         {item.Status === "returned" && (
           <div className="image-section">
