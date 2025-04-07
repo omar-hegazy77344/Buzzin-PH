@@ -87,7 +87,7 @@ const ItemDetails = ({ params }) => {
 
       // Dynamic Fields
       let fields = [];
-      if (isLost) {
+      if (item.Status === "lost") {
         fields = [
           ["Item Name:", item.ItemName],
           ["Date Lost:", new Date(item.Loston).toLocaleDateString()],
@@ -100,7 +100,7 @@ const ItemDetails = ({ params }) => {
           ["Found By ID:", item.FoundbyID],
           ["Description:", item.description]
         ];
-      } else {
+      } else if (item.Status === "returned") {
         fields = [
           ["Item Name:", item.ItemName],
           ["Date Lost:", new Date(item.Loston).toLocaleDateString()],
@@ -115,6 +115,15 @@ const ItemDetails = ({ params }) => {
           ["Receiver Name:", item.ReciverName],
           ["Receiver ID:", item.ReciverID],
           ["Contact Info:", item.ReciverContactInfo],
+          ["Date Received:", new Date(item.createdAt).toLocaleDateString()],
+          ["Time Received:", new Date(item.createdAt).toLocaleTimeString()]
+        ];
+      }else if (item.Status === "food") {
+        fields = [
+          ["Food Delivery Disclaimer:", "I, the undersigned, acknowledge that I have requested food delivery to Park Hyatt and I fully agree that the hotel is not liable for any consequences that may result due to the consumption of the food I ordered."],
+          ["Receiver Name:", item.Name],
+          ["Receiver ID:", item.ID],
+          ["Receiver Contact Info:", item.ContactInfo],
           ["Date Received:", new Date(item.createdAt).toLocaleDateString()],
           ["Time Received:", new Date(item.createdAt).toLocaleTimeString()]
         ];
@@ -141,16 +150,21 @@ const ItemDetails = ({ params }) => {
         }
       }
 
-      if (signatureImg) {
+      if (item.Status === "food" && signatureImg) {
+        doc.text("Receiver's Signature:", 20, yOffset + 10);
+        doc.addImage(signatureImg, getImageFormat(signatureImg.src), 20, yOffset + 15, pictureWidth, pictureHeight);
+      }else if (signatureImg) {
         doc.text("Founder's Signature:", 20, 150);
         doc.addImage(signatureImg, getImageFormat(signatureImg.src), 20, 155, pictureWidth, pictureHeight);
-      }
+      } 
 
       if (itemPhotoImg) {
         doc.text("Item Photo:", 100, 150);
         doc.addImage(itemPhotoImg, getImageFormat(itemPhotoImg.src), 100, 155, pictureWidth, pictureHeight);
+      }else if (item.Status === "food" && itemPhotoImg) {
+        doc.text("Item Photo:", 100, 150);
+        doc.addImage(itemPhotoImg, getImageFormat(itemPhotoImg.src), 100, 155, pictureWidth, pictureHeight);
       }
-
       // Footer
       doc.setLineWidth(0.5);
       doc.line(10, 280, 200, 280);
@@ -192,8 +206,8 @@ const ItemDetails = ({ params }) => {
       <div className="item-info">
       {item.Status === "lost" || item.Status === "returned" ? (<h3><strong>Item Name:</strong> {item.ItemName}</h3>) : (
         <div className="input-wrap w-100 not-empty focus"> 
-        <h3><strong>Food Delivery Disclaimer:</strong> </h3> 
-        <p className="info-box">
+          <h3><strong>Food Delivery Disclaimer:</strong> </h3> 
+          <p className="info-box">
             I, the udersigned, acknowledge that I have requested food delivery to Park Hyatt and I fully agree that the hotel is not liable for any consequences that may result due to the consumption of the food I ordered.
           </p>
           <label className="infolable">Disclaimer </label>
