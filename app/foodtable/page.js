@@ -5,7 +5,7 @@ import './table.css';
 import DescriptionIcon from '@mui/icons-material/Description';
 import withAuth from '@/lib/withAuth';
 
-const FoodTable = () => {
+const LostFoundTable = () => {
   const [items, setItems] = useState([]);
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
   const [overlayImageSrc, setOverlayImageSrc] = useState('');
@@ -64,7 +64,6 @@ const FoodTable = () => {
                   <td>
                     <img
                       src={item.photoImage}
-                      alt={item.ItemName}
                       style={{ cursor: 'pointer', borderRadius: '50%' }}
                       onClick={() => handleImageClick(item.photoImage)}
                     />
@@ -106,4 +105,4 @@ const FoodTable = () => {
   );
 };
 
-export default withAuth(FoodTable);
+export default withAuth(LostFoundTable);

@@ -19,14 +19,10 @@ export async function GET(req, { params }) {
       item = await Returned.findOne(query);
       if (item) item.Status = 'returned';
     } else 
-    if(!item)
         {
           item = await Food.findOne(query);
           if (item) item.Status = 'food';
         }
-      else {
-      item.Status = 'lost';
-    }
 
     if (!item) {
       return NextResponse.json({ error: 'Item not found' }, { status: 404 });

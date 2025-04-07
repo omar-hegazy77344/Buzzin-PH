@@ -64,7 +64,6 @@ const LostFoundTable = () => {
                 <th>Found By</th>
                 <th>Recived by</th>
                 <th>Reciver ID</th>
-
                 <th>Reciver Signature</th>
                 <th>Status</th>
                 <th>File</th>

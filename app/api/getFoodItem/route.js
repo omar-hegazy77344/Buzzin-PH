@@ -8,7 +8,7 @@ export async function GET(req) {
   try {
     await client.connect();
     const database = client.db("Reports"); // Your MongoDB database
-    const foodCollection = database.collection("Food");
+    const foodCollection = database.collection('Food');
 
     // Fetch data from both collections
     const food = await foodCollection.find({}).toArray();
